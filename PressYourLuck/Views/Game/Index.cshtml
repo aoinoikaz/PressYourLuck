@@ -1,0 +1,53 @@
+﻿@model List<Tile>
+
+<h4>Current Bet: $ @ViewData["currentBet"]</h4>
+
+@{
+    if (!string.IsNullOrEmpty((string)ViewData["currentBet"]))
+    {
+        if (double.Parse((string)ViewData["currentBet"]) > 0)
+        {
+            <a href='@Url.Action("TakeCoins", "Game")' class="btn btn-success rounded">Take the Coins!</a>
+        }
+        else
+        {
+            if (double.Parse((string)ViewData["coins"]) > 0)
+            {
+                <a href='@Url.Action("Index", "Home")' class="btn btn-danger rounded">Try Again!</a>
+            }
+        }
+    }
+}
+
+<div class="row">
+    @foreach (var tile in Model)
+    {
+        <div class="col-2">
+            <div class="card">
+
+                @if (tile.Visible == false)
+                {
+                    <img src="~/images/unknown.png" class="card-img-top" alt="...">
+                    <a href='@Url.Action("FlipTile", "Game", tile)' class="btn btn-primary">Choose</a>
+                }
+                else if (tile.Value == "0.00")
+                {
+                    <img src="~/images/bust.png" class="card-img-top" alt="...">
+                }
+                else
+                {
+                    <img src="~/images/money.png" class="card-img-top" alt="...">
+                }
+
+                @if (tile.Visible)
+                {
+                    <div class="card-body">
+                        <div>@tile.Value</div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+</div>
+

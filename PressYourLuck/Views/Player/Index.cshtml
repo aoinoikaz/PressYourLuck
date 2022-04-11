@@ -1,0 +1,29 @@
+﻿@model PressYourLuck.Models.Player
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<hr />
+Please enter your name and the number of coins you have to get started.<br /><br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Coins" class="control-label"></label>
+                <input asp-for="Coins" class="form-control" />
+                <span asp-validation-for="Coins" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Join Game!" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PressYourLuck.Models.Audit>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Audit Log</h1>
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link@(ViewBag.Filter == "all" ? " active" : "")" asp-action="Index" asp-route-filter="all">All</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.Filter == "cashIn" ? " active" : "")" asp-action="Index" asp-route-filter="cashIn">Cash In</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link@(ViewBag.Filter == "cashOut" ? " active" : "")" asp-action="Index" asp-route-filter="cashOut">Cash Out</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link@(ViewBag.Filter == "lose" ? " active" : "")" asp-action="Index" asp-route-filter="lose">Lose</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link@(ViewBag.Filter == "win" ? " active" : "")" asp-action="Index" asp-route-filter="win">Win</a>
+    </li>
+</ul>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuditType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
